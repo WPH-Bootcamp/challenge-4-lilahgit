@@ -41,6 +41,21 @@ function markTodoCompleted() {
   // 4. Ubah properti `isCompleted` dari to-do yang dipilih menjadi `true`
   // 5. Beri feedback ke user bahwa to-do berhasil ditandai selesai
   // 6. Tangani kasus jika to-do sudah selesai
+  listTodos();
+  if (todos.length === 0) return runTodoApp();
+  let toDoNum = prompt ('Enter the NUMBER of the to-do to mark as completed: ', (num) => {
+    const index = parseInt(num) - 1;
+    if (isNaN(index) || index < 0 || index >= todos.length) {
+      console.log('Invalid number. Please enter the NUMBER of the to-do ');
+      return runTodoApp();
+    }
+    if (todos[index].isCompleted) {
+      console.log(`"${todos[index].text}" is already completed.`);
+    } else {
+      todos[index].isCompleted = true;
+      console.log(`To-do "${todos[index].text}" marked as completed.`);
+    }
+  })
 }
 
 function deleteTodo() {
