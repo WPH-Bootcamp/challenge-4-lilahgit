@@ -6,6 +6,10 @@ function generateUniqueId() {
   // TODO: Implementasi fungsi untuk menghasilkan ID unik
   // Ini akan digunakan secara internal untuk setiap objek to-do
   // Contoh: Gabungan waktu saat ini dan angka acak
+  const timestamp = Date.now().toString();
+  const randomStr = Math.random().toString();
+  return `${timestamp}-${randomStr}`;
+
 }
 
 function addTodo() {
