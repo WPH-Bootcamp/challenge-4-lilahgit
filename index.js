@@ -47,7 +47,7 @@ function markTodoCompleted() {
     let index = parseInt(toDoNum) - 1;
     if (isNaN(index) || index < 0 || index >= todos.length) {
       console.log('Invalid number. Please enter the NUMBER of the to-do ');
-      return runTodoApp();
+      return;
     }
     if (todos[index].isCompleted) {
       console.log(`"${todos[index].text}" is already completed.`);
@@ -70,7 +70,7 @@ function deleteTodo() {
     let index = parseInt(toDoNum) - 1;
     if (isNaN(index) || index < 0 || index >= todos.length) {
       console.log('Invalid number. Please enter the NUMBER of the to-do ');
-      return runTodoApp();
+      return;
     }
     const removed = todos.splice(index, 1)[0];
     console.log(`To-do "${removed.text}" has been deleted.`);
@@ -117,7 +117,7 @@ function runTodoApp() {
     console.log('[list] To-Do List');
     console.log('[exit] Exit');
 
-    let command = prompt ('Type your choice (add / complete / delete / list / exit): ').toLowerCase();
+    let command = prompt ('Type your choice (add / complete / delete / list / exit): ');
       switch (command){
         case 'add':
           addTodo();
@@ -130,14 +130,14 @@ function runTodoApp() {
           break;
         case 'list':
           listTodos();
-          runTodoApp();
           break;
-        default:
-          console.log('Please type the available option only (add / complete / delete / list / exit). Try again.');
-          runTodoApp();
         case 'exit':
           running = false;
           console.log('Closing the app. Thank you!');
+          break;
+        default:
+          console.log('Please type the available option only (add / complete / delete / list / exit). Try again.');
+          break;
       }
     }
   }
