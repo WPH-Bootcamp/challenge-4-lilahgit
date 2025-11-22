@@ -66,8 +66,8 @@ function deleteTodo() {
   // 5. Beri feedback ke user bahwa to-do berhasil dihapus
   listTodos();
   if (todos.length === 0) return runTodoApp();
-  let toDoNum = prompt ('Enter the NUMBER of the to-do to DELETE: ', (num) => {
-    const index = parseInt(num) - 1;
+  let toDoNum = prompt ('Enter the NUMBER of the to-do to DELETE: ');
+    let index = parseInt(toDoNum) - 1;
     if (isNaN(index) || index < 0 || index >= todos.length) {
       console.log('Invalid number. Please enter the NUMBER of the to-do ');
       return runTodoApp();
@@ -75,8 +75,7 @@ function deleteTodo() {
     const removed = todos.splice(index, 1)[0];
     console.log(`To-do "${removed.text}" has been deleted.`);
     return runTodoApp();
-  });
-}
+  }
 
 function listTodos() {
   // TODO: Implementasi logika untuk menampilkan semua to-do
@@ -119,7 +118,7 @@ function runTodoApp() {
     console.log('[exit] Exit');
 
     let command = prompt ('Type your choice (add / complete / delete / list / exit): ').toLowerCase();
-      switch (command) {
+      switch (command){
         case 'add':
           addTodo();
           break;
@@ -133,13 +132,12 @@ function runTodoApp() {
           listTodos();
           runTodoApp();
           break;
+        default:
+          console.log('Please type the available option only (add / complete / delete / list / exit). Try again.');
+          runTodoApp();
         case 'exit':
           running = false;
           console.log('Closing the app. Thank you!');
-          break;
-        default:
-          console.log('Please enter the available option (add / complete / delete / list / exit). Try again.');
-          runTodoApp();
       }
     }
   }
