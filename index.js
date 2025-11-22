@@ -43,8 +43,8 @@ function markTodoCompleted() {
   // 6. Tangani kasus jika to-do sudah selesai
   listTodos();
   if (todos.length === 0) return runTodoApp();
-  let toDoNum = prompt ('Enter the NUMBER of the to-do to mark as completed: ', (num) => {
-    const index = parseInt(num) - 1;
+  let toDoNum = prompt ('Enter the NUMBER of the to-do to mark as completed: ');
+    let index = parseInt(toDoNum) - 1;
     if (isNaN(index) || index < 0 || index >= todos.length) {
       console.log('Invalid number. Please enter the NUMBER of the to-do ');
       return runTodoApp();
@@ -55,8 +55,7 @@ function markTodoCompleted() {
       todos[index].isCompleted = true;
       console.log(`To-do "${todos[index].text}" marked as completed.`);
     }
-  })
-}
+  }
 
 function deleteTodo() {
   // TODO: Implementasi logika untuk menghapus to-do
@@ -91,11 +90,13 @@ function listTodos() {
     if (todos.length === 0) {
       console.log("No to-dos to display.");
       return;
-    }
+    }else{
     todos.forEach((todo, index) => {
       const status = todo.isCompleted ? "[DONE]" : "[ACTIVE]";
       console.log(`${index + 1}. ${status} | ${todo.text}`);
     });
+  }
+  console.log("-----------------------");
 }
 
 function runTodoApp() {
@@ -117,7 +118,7 @@ function runTodoApp() {
     console.log('[list] To-Do List');
     console.log('[exit] Exit');
 
-    let command = prompt ('Type your choice (add / complete / delete / list / exit):').toLowerCase();
+    let command = prompt ('Type your choice (add / complete / delete / list / exit): ').toLowerCase();
       switch (command) {
         case 'add':
           addTodo();
@@ -133,6 +134,7 @@ function runTodoApp() {
           runTodoApp();
           break;
         case 'exit':
+          running = false;
           console.log('Closing the app. Thank you!');
           break;
         default:
