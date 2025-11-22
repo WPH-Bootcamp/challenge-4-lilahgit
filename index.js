@@ -65,6 +65,18 @@ function deleteTodo() {
   // 3. Validasi input: Pastikan nomor adalah angka, dalam rentang yang valid
   // 4. Hapus to-do yang dipilih dari array `todos`
   // 5. Beri feedback ke user bahwa to-do berhasil dihapus
+  listTodos();
+  if (todos.length === 0) return runTodoApp();
+  let toDoNum = prompt ('Enter the NUMBER of the to-do to DELETE: ', (num) => {
+    const index = parseInt(num) - 1;
+    if (isNaN(index) || index < 0 || index >= todos.length) {
+      console.log('Invalid number. Please enter the NUMBER of the to-do ');
+      return runTodoApp();
+    }
+    const removed = todos.splice(index, 1)[0];
+    console.log(`To-do "${removed.text}" has been deleted.`);
+    return runTodoApp();
+  });
 }
 
 function listTodos() {
@@ -97,8 +109,38 @@ function runTodoApp() {
     //    berdasarkan perintah yang dimasukkan user
     // 4. Tangani perintah 'exit' untuk menghentikan loop aplikasi
     // 5. Tangani input perintah yang tidak valid
+    console.log('\n--This is to-do list app---');
+    console.log('Please choose an option below:');
+    console.log('[add] Add To-Do');
+    console.log('[complete] Mark To-Do Completed');
+    console.log('[delete] Delete To-Do');
+    console.log('[list] To-Do List');
+    console.log('[exit] Exit');
+
+    let command = prompt ('Type your choice (add / complete / delete / list / exit):').toLowerCase();
+      switch (command) {
+        case 'add':
+          addTodo();
+          break;
+        case 'complete':
+          markTodoCompleted();
+          break;
+        case 'delete':
+          deleteTodo();
+          break;
+        case 'list':
+          listTodos();
+          runTodoApp();
+          break;
+        case 'exit':
+          console.log('Closing the app. Thank you!');
+          break;
+        default:
+          console.log('Please enter the available option (add / complete / delete / list / exit). Try again.');
+          runTodoApp();
+      }
+    }
   }
-}
 
 // Jangan ubah bagian di bawah ini. Ini adalah cara Node.js menjalankan fungsi utama
 // dan mengekspor fungsi-fungsi untuk pengujian (jika nanti ada).
