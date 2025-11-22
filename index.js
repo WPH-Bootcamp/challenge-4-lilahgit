@@ -60,6 +60,15 @@ function listTodos() {
   // 4. Untuk setiap to-do, tampilkan nomor urut, status ([DONE] atau [ACTIVE]), dan teks to-do
   //    Contoh format: "1. [ACTIVE] | Belajar JavaScript"
   // 5. Tampilkan garis penutup daftar
+  console.log('--- YOUR TO-DO LIST ---');
+    if (todos.length === 0) {
+      console.log("No to-dos to display.");
+      return;
+    }
+    todos.forEach((todo, index) => {
+      const status = todo.isCompleted ? "[DONE]" : "[ACTIVE]";
+      console.log(`${index + 1}. ${status} | ${todo.text}`);
+    });
 }
 
 function runTodoApp() {
