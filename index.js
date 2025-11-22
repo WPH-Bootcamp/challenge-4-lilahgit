@@ -19,6 +19,18 @@ function addTodo() {
   // 3. Buat objek to-do baru dengan properti: id (dari generateUniqueId), text, dan isCompleted (boolean, default false)
   // 4. Tambahkan objek to-do ini ke array `todos`
   // 5. Beri feedback ke user bahwa to-do berhasil ditambahkan
+  let textTodo = prompt("Enter your to do: ");
+    if (textTodo.trim() === "") {
+      console.log("To-do cannot be empty.");
+      return;
+    }
+    const newTodo = {
+      id: generateUniqueId(),
+      text: textTodo,
+      isCompleted: false
+    }; 
+    todos.push(newTodo);
+    console.log(`Added your to do: "${textTodo}"`);
 }
 
 function markTodoCompleted() {
